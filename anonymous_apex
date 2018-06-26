@@ -1,0 +1,17 @@
+
+Account a = [SELECT Id, Name, Is_Stale__c, Last_Field_Refresh__c FROM Account LIMIT 1][0];
+System.debug('Id: '+ a.Id);
+System.debug('Now is: '+System.now());
+System.debug('Last_Field_Refresh__c: '+ a.Last_Field_Refresh__c);
+System.debug('Is_Stale__c: '+ a.Is_Stale__c );
+
+DateTime dt = System.now();
+DateTime thePast = dt.addMinutes(-62);
+System.debug('Moved refresh date/time back to: '+thePast);
+a.Last_Field_Refresh__c = thePast;
+
+
+update a;
+a = [SELECT Id, Name, Is_Stale__c, Last_Field_Refresh__c FROM Account LIMIT 1][0];
+System.debug('Is_Stale__c is: '+ a.Is_Stale__c );
+System.debug('Last_Field_Refresh__c is: '+ a.Last_Field_Refresh__c);
