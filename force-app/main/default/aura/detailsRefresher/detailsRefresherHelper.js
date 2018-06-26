@@ -1,5 +1,9 @@
 ({
     /*	Update any near-real-time fields with a callout to the System of Record before rendering details
+        Controller: DetailRefresher_CC
+        Method: updateFields
+        Parameter: recordId
+        Return: none
 	 */
     refresh : function(cmp) {
         var action = cmp.get("c.updateFields");

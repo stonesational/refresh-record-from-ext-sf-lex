@@ -5,7 +5,9 @@ Attributes:     isRefreshed becomes true after record has been updated
 -->
 <aura:component controller="detailRefresher_CC" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
 
-    <aura:attribute name="isRefreshed" default="false" type="Boolean" description="stores the card replacement work in progress" />    
+    <aura:attribute description="Has the record been refreshed yet? Only display details when complete"
+        name="isRefreshed" default="false" type="Boolean"  />    
+
     <aura:handler name="init" value="{!this}"  action="{!c.doInit}"/>
     
     <aura:if isTrue="{! v.isRefreshed }">
