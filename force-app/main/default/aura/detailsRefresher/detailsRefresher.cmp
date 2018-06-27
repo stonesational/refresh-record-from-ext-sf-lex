@@ -9,6 +9,7 @@ Attributes:
     
     <aura:handler name="init" value="{!this}"  action="{!c.doInit}"/>
     
+    <!--TODO: Instead of layoutType use fields and only include the fields we'll want to update. Clearer and more performant-->
     <force:recordData aura:id="recordHandler"
       recordId="{!v.recordId}"
       mode="EDIT"
