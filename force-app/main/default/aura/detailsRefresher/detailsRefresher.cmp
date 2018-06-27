@@ -7,14 +7,20 @@ Attributes:     isRefreshed becomes true after record has been updated
 
     <aura:attribute description="Has the record been refreshed yet? Only display details when complete"
         name="isRefreshed" default="false" type="Boolean"  />    
-
+    <aura:attribute name="record" type="Account"/>
+    <aura:attribute name="simpleRecord" type="Account"/>
+    
     <aura:handler name="init" value="{!this}"  action="{!c.doInit}"/>
     
-    <aura:if isTrue="{! v.isRefreshed }">
-        <force:recordView recordId="{! v.recordId }" type="FULL"/>
-        <aura:set attribute="else">
-            <lightning:spinner alternativeText="Loading" size="large" />
-        </aura:set>
-    </aura:if>
+    <force:recordData aura:id="recordHandler"
+      recordId="{!v.recordId}"
+      mode="EDIT"
+      layoutType="FULL" 
+      targetRecord="{!v.record}"
+      targetFields="{!v.simpleRecord}"
+      />
+    
+    <lightning:spinner aura:id="spinner" alternativeText="Loading" size="large" />
+
 
 </aura:component>	

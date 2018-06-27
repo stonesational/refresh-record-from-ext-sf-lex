@@ -13,19 +13,20 @@ public with sharing class detailRefresher_CC {
     /*------------------------------------------------------------
 	Update the SObject's real-time fields from the SOR via callout.
     Using dynamic soql so it's a re-usable component.
+    TODO: Make updateFields return an sObject instead of Account so it's generic.
     TODO: Currently mocked from a custom metadata type. Will want to replace with a callout
 	@param argRecordId SF ID of the record
 	@return None or Exception
 	------------------------------------------------------------*/
     @AuraEnabled
-    public static void updateFields(String argRecordId){       
+    public static Account updateFields(String argRecordId){       
        try{
             Map<String,String> fieldMap = mockCallout(argRecordId);
             
             //Exit if there's no fields to update on this SObject
             if (fieldMap.isEmpty()) {
                 System.debug('Exiting: No fields to update');    
-                return; 
+                return null; 
             }
 
             //Build the dynamic query
@@ -44,7 +45,7 @@ public with sharing class detailRefresher_CC {
             //Exit if there record was updated recently
             if( (Boolean)record.get('Is_Stale__c') == false ) {
                 System.debug('Existing: Record is not stale');
-                return; 
+                return null; 
             }
             
             //Update records with new values and now as the Last Field Refresh time
@@ -54,6 +55,10 @@ public with sharing class detailRefresher_CC {
             record.put('Last_Field_Refresh__c', System.now());
             update record;
             System.debug('Record Updated');
+            
+            
+            //return (String)record.get('phone');
+            return (Account)record;
 
        } catch(Exception e) {
            System.debug('Error in detailRefresher_CC: '+ e.getMessage());
