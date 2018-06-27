@@ -3,7 +3,7 @@
         Controller: DetailRefresher_CC
         Method: updateFields
         Parameter: recordId
-        Return: none
+        Return: null if no updates or a Map of field name : values if record was stale & updated
 	 */
     refresh : function(cmp, helper) {
         var action = cmp.get("c.updateFields");
