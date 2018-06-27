@@ -3,7 +3,7 @@
         Controller: DetailRefresher_CC
         Method: updateFields
         Parameter: recordId
-        Return: null if no updates or a Map of field name : values if record was stale & updated
+        Return: null if no updates. SObject (or Map with fieldName:values) should be used. Ran short on time so have an Account now
 	 */
     refresh : function(cmp, helper) {
         var action = cmp.get("c.updateFields");
