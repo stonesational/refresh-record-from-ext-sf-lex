@@ -1,11 +1,10 @@
 <!--
 Description:    Shows spinner until phone number is updated from the SOR via callout
-                TTL set on formula field on object: Refresh_
+                TTL set on formula field on the object named object.Is_Stale__c
 Attributes:     
 -->
 <aura:component controller="detailRefresher_CC" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
  
-    <!--aura:attribute name="record" type="Account"/-->
     <aura:attribute name="simpleRecord" type="Account"/>
     
     <aura:handler name="init" value="{!this}"  action="{!c.doInit}"/>
@@ -13,12 +12,11 @@ Attributes:
     <force:recordData aura:id="recordHandler"
       recordId="{!v.recordId}"
       mode="EDIT"
-      layoutType="FULL" 
-      
+      layoutType="FULL"     
       targetFields="{!v.simpleRecord}"
       />
-    <!--targetRecord="{!v.record}"-->
-    <lightning:spinner aura:id="spinner" alternativeText="Loading" size="large" />
+
+     <lightning:spinner aura:id="spinner" alternativeText="Loading" size="large" />
 
 
 </aura:component>	
