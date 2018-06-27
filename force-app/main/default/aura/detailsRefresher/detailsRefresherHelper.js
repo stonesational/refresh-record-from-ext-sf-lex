@@ -11,7 +11,6 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                cmp.set("v.isRefreshed", true);
                 const hasUpdate = response.getReturnValue() ? true : false; //null value means no update was made 
                 if(hasUpdate){
                     helper.updateRecord(cmp, response.getReturnValue());

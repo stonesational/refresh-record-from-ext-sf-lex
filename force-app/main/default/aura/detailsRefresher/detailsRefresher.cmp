@@ -1,13 +1,11 @@
 <!--
 Description:    Shows spinner until phone number is updated from the SOR via callout
                 TTL set on formula field on object: Refresh_
-Attributes:     isRefreshed becomes true after record has been updated
+Attributes:     
 -->
 <aura:component controller="detailRefresher_CC" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
-
-    <aura:attribute description="Has the record been refreshed yet? Only display details when complete"
-        name="isRefreshed" default="false" type="Boolean"  />    
-    <aura:attribute name="record" type="Account"/>
+ 
+    <!--aura:attribute name="record" type="Account"/-->
     <aura:attribute name="simpleRecord" type="Account"/>
     
     <aura:handler name="init" value="{!this}"  action="{!c.doInit}"/>
@@ -16,10 +14,10 @@ Attributes:     isRefreshed becomes true after record has been updated
       recordId="{!v.recordId}"
       mode="EDIT"
       layoutType="FULL" 
-      targetRecord="{!v.record}"
+      
       targetFields="{!v.simpleRecord}"
       />
-    
+    <!--targetRecord="{!v.record}"-->
     <lightning:spinner aura:id="spinner" alternativeText="Loading" size="large" />
 
 
